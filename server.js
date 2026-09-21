@@ -8,6 +8,34 @@ const app = express();
 // Middleware opcional
 app.use(express.json());
 
+const express = require('express');
+const neonClient = require('./neonClient');
+const app = express();
+
+app.use(express.json());
+
+// Obtener registros de Neon
+app.get('/api/users', async (req, res) => {
+  try {
+    const response = await neonClient.get('/users');
+    res.json(response.data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Insertar registro en Neon
+app.post('/api/users', async (req, res) => {
+  try {
+    const response = await neonClient.post('/users', req.body);
+    res.json(response.data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.listen(3000, () => console.log('Backend conectado a Neon con API Key'));
+
 // Listar usuarios
 app.get('/api/users', (req, res) => {
   res.json([
