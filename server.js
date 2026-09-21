@@ -1,3 +1,7 @@
+const axios = require('axios');
+
+const NEON_API = "https://ep-patient-leaf-anrbfho5.apirest.c-6.us-east-1.aws.neon.tech/neondb/rest/v1";
+const NEON_TOKEN = process.env.NEON_TOKEN; // guarda tu token en Railway
 const express = require('express');
 const app = express();
 
