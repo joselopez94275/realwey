@@ -1,11 +1,16 @@
-const express = require("express");
+const express = require('express');
 const app = express();
 
-app.get("/robo", (req, res) => {
-  console.log("📥 Token recibido:", req.query.token);
-  res.send("✅ Token capturado");
+// Middleware opcional
+app.use(express.json());
+
+// Ruta de prueba
+app.get('/', (req, res) => {
+  res.send('Servidor funcionando en Railway 🚀');
 });
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log("Servidor activo");
+// Puerto dinámico (Railway inyecta PORT)
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en puerto ${PORT}`);
 });
